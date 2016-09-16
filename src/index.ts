@@ -1,6 +1,6 @@
-import { request } from "./request";
-import striptags from "striptags";
-import { encode } from "urlencode";
+import { encodeURI } from "./encodeURI";
+import { jsonRequest } from "./request";
+import { striptags } from "./striptags";
 
 interface IGeocodeResult extends google.maps.GeocoderResult {
   status: number;
@@ -15,22 +15,26 @@ export default class GMaps {
 
   constructor(canvas: HTMLDivElement, options: Object) {
     this.canvas = canvas;
+    this.map = new google.maps.Map(canvas, options);
+  }
+
+  public getMap(): google.maps.Map {
+    return this.map;
   }
 
   public getPositionByAddress(address: string, callback: Function) {
     address = striptags(address);
-    address = encode(address, "utf-8");
 
-    request(GMaps.GEO_URL, (res: IGeocodeResult): void => {
-      if (res.status !== google.maps.GeocoderStatus.OK) {
-        return null;
-      }
+    jsonRequest(GMaps.GEO_URL + address, (res: any): void => {
+        if (res.status !== google.maps.GeocoderStatus.OK) {
+          callback(null);
+        }
 
-      const lat = res.results[0].geometry.location.lat();
-      const lng = res.results[0].geometry.location.lng();
-      const pos = new google.maps.LatLng(lat, lng);
+        const lat = res.results[0].geometry.location.lat;
+        const lng = res.results[0].geometry.location.lng;
+        const pos = new google.maps.LatLng(lat, lng);
 
-      callback(pos);
+        callback(pos);
     });
   }
 
@@ -48,17 +52,17 @@ export default class GMaps {
     return marker;
   }
 
-  public getBoundingBox(markers: google.maps.Marker[]) {
+  public clearMarkers() {
+    this.markers.forEach(marker => marker.setMap(null));
+    this.markers = [];
+  }
+
+  private getBoundingBox(markers: google.maps.Marker[]) {
     const bounds = new google.maps.LatLngBounds();
     for (let i = 0; i < markers.length; i++) {
       bounds.extend(markers[i].getPosition());
     }
 
     return bounds;
-  }
-
-  public clearMarkers() {
-    this.markers.forEach(marker => marker.setMap(null));
-    this.markers = [];
   }
 }

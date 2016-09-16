@@ -5,9 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && ",
-    "watch": "tsc -w",
-    "lint": "tslint"
+    "build": "webpack --display-error-details",
+    "watch": "chokidar 'src/**/*.ts' -c 'npm run build'",
+    "lint": "tslint",
+    "clean": "rimraf dist/"
   },
   "author": "Marvin Hagemeister <marvin@marvinhagemeister.de>",
   "license": "MIT",
@@ -16,6 +17,13 @@
     "urlencode": "^1.1.0"
   },
   "devDependencies": {
-    "@google/maps": "^0.1.0"
+    "@google/maps": "^0.1.0",
+    "awesome-typescript-loader": "^2.2.4",
+    "chokidar-cli": "^1.2.0",
+    "json-loader": "^0.5.4",
+    "rimraf": "^2.5.4",
+    "tslint": "^3.15.1",
+    "typescript": "^2.0.0",
+    "webpack": "^1.13.2"
   }
 }
