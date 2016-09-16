@@ -8,7 +8,25 @@ interface IGeocodeResult extends google.maps.GeocoderResult {
 }
 
 export default class GMaps {
+
+  public static getPositionByAddress(address: string, callback: Function) {
+    address = striptags(address);
+
+    jsonRequest(GMaps.GEO_URL + address, (res: any): void => {
+      if (res.status !== google.maps.GeocoderStatus.OK) {
+        callback(null);
+      }
+
+      const lat = res.results[0].geometry.location.lat;
+      const lng = res.results[0].geometry.location.lng;
+      const pos = new google.maps.LatLng(lat, lng);
+
+      callback(pos);
+    });
+  }
+
   private static GEO_URL = "https://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=";
+
   private canvas: HTMLDivElement;
   private map: google.maps.Map;
   private markers: google.maps.Marker[] = [];
@@ -20,22 +38,6 @@ export default class GMaps {
 
   public getMap(): google.maps.Map {
     return this.map;
-  }
-
-  public getPositionByAddress(address: string, callback: Function) {
-    address = striptags(address);
-
-    jsonRequest(GMaps.GEO_URL + address, (res: any): void => {
-        if (res.status !== google.maps.GeocoderStatus.OK) {
-          callback(null);
-        }
-
-        const lat = res.results[0].geometry.location.lat;
-        const lng = res.results[0].geometry.location.lng;
-        const pos = new google.maps.LatLng(lat, lng);
-
-        callback(pos);
-    });
   }
 
   public placeMarker(position: google.maps.LatLng, title?: string) {
