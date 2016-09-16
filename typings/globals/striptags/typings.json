@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/279acdc785609096b2f0984aef90b40319c1ac89/striptags/striptags.d.ts",
+    "raw": "registry:dt/striptags#0.0.0+20160619032154",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/279acdc785609096b2f0984aef90b40319c1ac89/striptags/striptags.d.ts"
+  }
+}

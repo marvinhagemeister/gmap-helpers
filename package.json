@@ -1,0 +1,21 @@
+{
+  "name": "gmaps-helpers",
+  "version": "1.0.0",
+  "description": "Google Maps helper library",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && ",
+    "watch": "tsc -w",
+    "lint": "tslint"
+  },
+  "author": "Marvin Hagemeister <marvin@marvinhagemeister.de>",
+  "license": "MIT",
+  "dependencies": {
+    "striptags": "^2.1.1",
+    "urlencode": "^1.1.0"
+  },
+  "devDependencies": {
+    "@google/maps": "^0.1.0"
+  }
+}
