@@ -7,6 +7,12 @@ interface IGeocodeResult extends google.maps.GeocoderResult {
   results: google.maps.GeocoderResult[];
 }
 
+interface IMarkerOptions {
+  title?: string;
+  icon?: string;
+  url?: string;
+}
+
 export default class GMaps {
 
   public static getPositionByAddress(address: string, callback: Function) {
@@ -25,14 +31,25 @@ export default class GMaps {
     });
   }
 
+  public static createInfoWindow(html: string): google.maps.InfoWindow {
+    return new google.maps.InfoWindow({
+      content: html,
+    });
+  }
+
   private static GEO_URL = "https://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=";
 
   private canvas: HTMLDivElement;
   private map: google.maps.Map;
   private markers: google.maps.Marker[] = [];
 
-  constructor(canvas: HTMLDivElement, options: Object) {
+  constructor(canvas: HTMLDivElement, options: any) {
     this.canvas = canvas;
+
+    if (!options.mapTypeId) {
+      options.mapTypeId = google.maps.MapTypeId.ROADMAP;
+    }
+
     this.map = new google.maps.Map(canvas, options);
   }
 
@@ -40,14 +57,33 @@ export default class GMaps {
     return this.map;
   }
 
-  public placeMarker(position: google.maps.LatLng, title?: string) {
-    const marker = new google.maps.Marker({
+  public placeMarker(position: google.maps.LatLng, options: IMarkerOptions) {
+    let defaults: any = {
       position,
-      title,
-    });
+    };
+
+    if (options.icon) {
+      defaults.icon = options.icon;
+    }
+
+    if (options.title) {
+      defaults.title = options.title;
+    }
+
+    if (options.url) {
+      defaults.url = options.url;
+    }
+
+    const marker = new google.maps.Marker(defaults);
 
     marker.setMap(this.map);
     this.markers.push(marker);
+
+    if (defaults.url) {
+      google.maps.event.addListener(marker, "click", () => {
+        window.location.href = defaults.url;
+      });
+    }
 
     // Set the view to contain all Markers
     this.map.fitBounds(this.getBoundingBox(this.markers));
