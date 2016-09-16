@@ -1,10 +1,11 @@
 const webpack = require('webpack');
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: './src/index.ts',
   output: {
     path: 'dist/',
-    filename: 'gmap-helpers.js',
+    filename: isProd ? 'gmap-helpers.min.js' : 'gmap-helpers.js',
     library: 'GMapHelpers',
     libraryTarget: 'umd'
   },
@@ -12,9 +13,9 @@ module.exports = {
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
   },
   devtool: 'source-map',
-  plugins: [
-    // new webpack.optimize.UglifyJsPlugin({ minimize: true })
-  ],
+  plugins: isProd
+    ? [new webpack.optimize.UglifyJsPlugin({ minimize: true })]
+    : [],
   module: {
     loaders: [
       { test: /\.json$/, loader: 'json-loader' },

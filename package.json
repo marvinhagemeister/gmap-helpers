@@ -8,6 +8,7 @@
     "build": "webpack --display-error-details",
     "watch": "chokidar 'src/**/*.ts' -c 'npm run build'",
     "lint": "tslint",
+    "publish": "webpack && NODE_ENV=production webpack",
     "clean": "rimraf dist/"
   },
   "author": "Marvin Hagemeister <marvin@marvinhagemeister.de>",
