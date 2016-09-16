@@ -1,5 +1,5 @@
 {
-  "name": "gmaps-helpers",
+  "name": "gmap-helpers",
   "version": "1.0.0",
   "description": "Google Maps helper library",
   "main": "dist/index.js",
