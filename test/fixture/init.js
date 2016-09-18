@@ -16,8 +16,9 @@ function initMap() {
   });
 
   var info = document.createElement("div");
+  info.style.background = 'white';
+  info.style.padding = '10px';
   info.textContent = "asdf";
 
-  var raw = map.getMap();
-  raw.controls[google.maps.ControlPosition.TOP_CENTER].push(info);
+  map.addControl(google.maps.ControlPosition.RIGHT_BOTTOM, info);
 }

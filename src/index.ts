@@ -90,6 +90,10 @@ export default class GMaps {
     return marker;
   }
 
+  public addControl(position: google.maps.ControlPosition, html: HTMLElement) {
+    this.map.controls[position].push(html);
+  }
+
   public clearMarkers() {
     this.markers.forEach(marker => marker.setMap(null));
     this.markers = [];
