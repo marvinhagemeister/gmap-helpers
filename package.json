@@ -8,11 +8,11 @@
     "url": "git@github.com:marvinhagemeister/gmap-helpers.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run lint",
     "build": "webpack --display-error-details",
     "watch": "chokidar 'src/*.ts' 'src/**/*.ts' -c 'npm run build'",
-    "lint": "tslint",
-    "publish": "webpack && NODE_ENV=production webpack",
+    "lint": "tslint 'src/**/*.ts'",
+    "publish": "npm t && webpack && NODE_ENV=production webpack",
     "clean": "rimraf dist/"
   },
   "author": "Marvin Hagemeister <marvin@marvinhagemeister.de>",

@@ -1,4 +1,3 @@
-import { encodeURI } from "./encodeURI";
 import { jsonRequest } from "./request";
 import { striptags } from "./striptags";
 
