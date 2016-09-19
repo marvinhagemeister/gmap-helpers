@@ -2,7 +2,7 @@
   "name": "gmap-helpers",
   "version": "1.0.0",
   "description": "Google Maps helper library",
-  "main": "dist/index.js",
+  "main": "dist/gmap-helpers.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --display-error-details",

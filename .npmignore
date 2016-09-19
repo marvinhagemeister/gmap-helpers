@@ -1,0 +1,10 @@
+node_modules/
+
+src/
+test/
+jsconfig.json
+*.log
+tsconfig.json
+tslint.json
+typings.json
+typings/
