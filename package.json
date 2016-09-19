@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Google Maps helper library",
   "main": "dist/gmap-helpers.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:marvinhagemeister/gmap-helpers.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --display-error-details",
@@ -13,10 +17,6 @@
   },
   "author": "Marvin Hagemeister <marvin@marvinhagemeister.de>",
   "license": "MIT",
-  "dependencies": {
-    "striptags": "^2.1.1",
-    "urlencode": "^1.1.0"
-  },
   "devDependencies": {
     "@google/maps": "^0.1.0",
     "awesome-typescript-loader": "^2.2.4",
