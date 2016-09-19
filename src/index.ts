@@ -56,6 +56,10 @@ export default class GMaps {
     return this.map;
   }
 
+  public setCenter(position: google.maps.LatLng) {
+    this.map.setCenter(position);
+  }
+
   public placeMarker(position: google.maps.LatLng, options: IMarkerOptions) {
     let defaults: any = {
       position,
