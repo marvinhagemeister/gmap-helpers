@@ -12,12 +12,12 @@ interface IMarkerOptions {
   url?: string;
 }
 
-export default class GMaps {
+export default class GMap {
 
   public static getPositionByAddress(address: string, callback: Function) {
     address = striptags(address);
 
-    jsonRequest(GMaps.GEO_URL + address, (res: any): void => {
+    jsonRequest(GMap.GEO_URL + address, (res: any): void => {
       if (res.status !== google.maps.GeocoderStatus.OK) {
         callback(null);
       }
