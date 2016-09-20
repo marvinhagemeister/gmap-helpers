@@ -1,5 +1,6 @@
 import { jsonRequest } from "./request";
 import { striptags } from "./striptags";
+import "object-assign";
 
 interface IGeocodeResult extends google.maps.GeocoderResult {
   status: number;
@@ -10,6 +11,7 @@ interface IMarkerOptions {
   title?: string;
   icon?: string;
   url?: string;
+  label?: string;
 }
 
 export default class GMap {
@@ -65,20 +67,9 @@ export default class GMap {
       position,
     };
 
-    if (options.icon) {
-      defaults.icon = options.icon;
-    }
-
-    if (options.title) {
-      defaults.title = options.title;
-    }
-
-    if (options.url) {
-      defaults.url = options.url;
-    }
+    options = Object.assign({}, defaults, options);
 
     const marker = new google.maps.Marker(defaults);
-
     marker.setMap(this.map);
     this.markers.push(marker);
 
