@@ -2,3 +2,7 @@
 /// <reference path="globals/striptags/index.d.ts" />
 /// <reference path="modules/object-assign/index.d.ts" />
 /// <reference path="urlencode/index.d.ts" />
+
+declare interface ObjectConstructor {
+    assign(target: any, ...sources: any[]): any;
+}
