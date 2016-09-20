@@ -67,9 +67,8 @@ export default class GMap {
       position,
     };
 
-    options = Object.assign({}, defaults, options);
-
-    const marker = new google.maps.Marker(defaults);
+    const newOpts: google.maps.MarkerOptions = Object.assign({}, defaults, options);
+    const marker = new google.maps.Marker(newOpts);
     marker.setMap(this.map);
     this.markers.push(marker);
 
