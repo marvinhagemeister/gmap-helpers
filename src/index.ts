@@ -78,13 +78,8 @@ export default class GMap {
       });
     }
 
-    // Center view
-    if (this.markers.length === 1) {
-      this.map.setCenter(marker.getPosition());
-    } else {
-      this.map.fitBounds(this.getBoundingBox(this.markers));
-    }
-
+    // Set the view to contain all Markers
+    this.map.fitBounds(this.getBoundingBox(this.markers));
     return marker;
   }
 
