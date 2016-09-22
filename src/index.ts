@@ -7,7 +7,7 @@ interface IGeocodeResult extends google.maps.GeocoderResult {
   results: google.maps.GeocoderResult[];
 }
 
-interface IMarkerOptions {
+interface IMarkerOptions extends google.maps.MarkerOptions {
   title?: string;
   icon?: string;
   url?: string;
@@ -67,14 +67,14 @@ export default class GMap {
       position,
     };
 
-    const newOpts: google.maps.MarkerOptions = Object.assign({}, defaults, options);
+    const newOpts: IMarkerOptions = Object.assign({}, defaults, options);
     const marker = new google.maps.Marker(newOpts);
     marker.setMap(this.map);
     this.markers.push(marker);
 
-    if (defaults.url) {
+    if (newOpts.url) {
       google.maps.event.addListener(marker, "click", () => {
-        window.location.href = defaults.url;
+        window.location.href = newOpts.url;
       });
     }
 
