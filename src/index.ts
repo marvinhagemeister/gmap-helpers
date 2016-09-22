@@ -74,7 +74,7 @@ export default class GMap {
 
     if (newOpts.url) {
       google.maps.event.addListener(marker, "click", () => {
-        window.location.href = newOpts.url;
+        window.open(newOpts.url, "_blank");
       });
     }
 
