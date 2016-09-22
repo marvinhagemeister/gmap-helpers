@@ -1,6 +1,6 @@
 {
   "name": "gmap-helpers",
-  "version": "1.3.3",
+  "version": "1.4.3",
   "description": "Google Maps helper library",
   "main": "dist/gmap-helpers.js",
   "repository": {
