@@ -62,24 +62,21 @@ export default class GMap {
     this.map.setCenter(position);
   }
 
-  public placeMarker(position: google.maps.LatLng, options: IMarkerOptions) {
-    let defaults: any = {
-      position,
-    };
+  public fitMarkers(markers: google.maps.Marker[]) {
+    this.map.fitBounds(this.getBoundingBox(markers));
+  }
 
-    const newOpts: IMarkerOptions = Object.assign({}, defaults, options);
-    const marker = new google.maps.Marker(newOpts);
+  public placeMarker(options: IMarkerOptions): google.maps.Marker {
+    const marker = new google.maps.Marker(options);
     marker.setMap(this.map);
     this.markers.push(marker);
 
-    if (newOpts.url) {
+    if (options.url) {
       google.maps.event.addListener(marker, "click", () => {
-        window.open(newOpts.url, "_blank");
+        window.open(options.url, "_blank");
       });
     }
 
-    // Set the view to contain all Markers
-    this.map.fitBounds(this.getBoundingBox(this.markers));
     return marker;
   }
 

@@ -11,9 +11,15 @@ function initMap() {
   };
 
   var map = new GMap(canvas, options);
-  var marker = map.placeMarker(pos, {
+  var marker = map.placeMarker({
+    position: pos,
     url: "https://example.com/"
   });
+
+  var pos2 = new google.maps.LatLng("52.937531", "6.960278600000038");
+  var marker2 = map.placeMarker({ position: pos2 });
+
+  map.fitMarkers([marker, marker2]);
 
   var info = document.createElement("div");
   info.style.background = 'white';

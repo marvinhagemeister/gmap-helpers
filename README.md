@@ -2,8 +2,7 @@
 
 gmap-helpers is a tiny wrapper around the google maps API. It is made for users
 like me who usually only have to embed a map on a contact page. The existing API
-from Google itself is awesome, but I always forget the little details like:
-how to zoom out so that all markers fit into the view. Why doesn't a click on
+from Google itself is awesome, but I always forget the little details like: Why doesn't a click on
 a marker with a URL open the URL?
 
 This library does all this automatically for you, which is great for simlpe maps.
@@ -27,19 +26,22 @@ const options = {
 };
 
 const map = new GMap(canvas, options);
-const marker = map.placeMarker(pos, {
+const marker = map.placeMarker({
+  position: pos,
   url: "https://example.com/"
 });
 
 ```
 
-
 ## `GMap` class methods
 
 ### `placeMarker`
 
-Adds a marker to the current map and fit all markers into the current view.
-Also assigns a click event if a URL is set.
+Adds a marker to the current map and assign a click event if an url is set.
+
+### `fitMarkers`
+
+Fit all given markers into the current map viewport.
 
 ### `clearMarkers`
 
