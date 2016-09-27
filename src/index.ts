@@ -80,6 +80,16 @@ export default class GMap {
     return marker;
   }
 
+  public setActiveIcon(markers: google.maps.Marker[], defaultIcon: string, activeIcon: string) {
+    for (let i = 0; i < this.markers.length; i++) {
+      this.markers[i].setIcon(defaultIcon);
+    }
+
+    for (let j = 0; j < markers.length; j++) {
+      markers[j].setIcon(activeIcon);
+    }
+  }
+
   public addControl(position: google.maps.ControlPosition, html: HTMLElement) {
     this.map.controls[position].push(html);
   }

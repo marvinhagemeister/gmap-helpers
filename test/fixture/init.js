@@ -21,6 +21,8 @@ function initMap() {
 
   map.fitMarkers([marker, marker2]);
 
+  map.setActiveIcon([marker], '', 'https://placehold.it/50x50/aaaaaa');
+
   var info = document.createElement("div");
   info.style.background = 'white';
   info.style.padding = '10px';

@@ -45,4 +45,8 @@ Fit all given markers into the current map viewport.
 
 ### `clearMarkers`
 
+### `setActiveIcon`
+
+Set a different icon for the given markers.
+
 Remove all markers from the current map.|
