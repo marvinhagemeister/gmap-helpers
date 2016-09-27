@@ -1,6 +1,5 @@
 import { jsonRequest } from "./request";
 import { striptags } from "./striptags";
-import "object-assign";
 
 interface IGeocodeResult extends google.maps.GeocoderResult {
   status: number;
